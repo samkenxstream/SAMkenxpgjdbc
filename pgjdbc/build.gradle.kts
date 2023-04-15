@@ -86,7 +86,7 @@ dependencies {
     shaded("com.ongres.scram:client:2.1")
 
     implementation("org.checkerframework:checker-qual:3.31.0")
-    testImplementation("se.jiderhamn:classloader-leak-test-framework:1.1.1")
+    testImplementation("se.jiderhamn:classloader-leak-test-framework:1.1.2")
 }
 
 val skipReplicationTests by props()
@@ -97,12 +97,6 @@ if (skipReplicationTests) {
         exclude("org/postgresql/replication/**")
         exclude("org/postgresql/test/jdbc2/CopyBothResponseTest*")
     }
-}
-
-tasks.jar {
-    // Workaround https://github.com/lburgazzoli/gradle-karaf-plugin/issues/87
-    extra.set("classifier", "")
-    extra.set("extension", "jar")
 }
 
 tasks.configureEach<Test> {
